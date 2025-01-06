@@ -11,11 +11,11 @@ def retrieve_medical_history(ethnicity, records):
             selected_records.append({"Patient_ID": record[0], "Family_History": record[11], "Comorbidity_Diabetes": record[12], "Comorbidity_Kidney_Disease": record[16], "Haemoglobin_Level": record[23]})
     return selected_records
 
-def retrieve_treatment_details(records):
+def retrieve_treatment_details(records, treatment):
     selected_records=[]
     for record in records:
-        if int(record[8]) > 100:
-            selected_records.append({"Patient_ID": record[0], "Survival_Months": record[8], "Tumor_Size_mm": record[4], "Tumor_Location": record[5], "Stage": record[6]})
+        if int(record[8]) > 100 and record[7] == treatment:
+            selected_records.append({"Patient_ID": record[0], "Survival_Months": record[8], "Tumor_Size_mm": record[4], "Tumor_Location": record[5], "Stage": record[6], "Treatment": record[7]})
     return selected_records
 
 def retrieve_high_risk_patients(records):
